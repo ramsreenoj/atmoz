@@ -11,7 +11,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: atmoz/sftp
+  IMAGE_NAME: ramsreenoj1/atmoz-sftp
 
 jobs:
   build:
