@@ -9,7 +9,7 @@ on:
       - "*.txt"
       - "*.png"
   pull_request:
-  workflow_dispatch:
+  
 env:
   IMAGE_NAME: ramsreenoj1/atmoz-sftp
 
