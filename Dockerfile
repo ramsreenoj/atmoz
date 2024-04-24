@@ -34,7 +34,7 @@ ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.ce.pipelines/.ssh/key
 ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.tisl.pipelines/.ssh/keys/id_rsa.pub
 
 ADD run.sh /run.sh
-EXPOSE map[22/tcp:{}]
+EXPOSE 22/tcp
 
 ENTRYPOINT ["/run.sh"]
 
