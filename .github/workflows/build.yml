@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # for proper signature verification
+          fetch-depth: 0 # for proper signature verifications
           submodules: true # for shunit2
 
       - name: Run ShellCheck
