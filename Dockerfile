@@ -19,8 +19,6 @@ ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.booker.pipelines/.ssh
 
 ADD run.sh /run.sh
 
-RUN /bin/sh -c chmod +x
-
 EXPOSE 22/tcp
 
 ENTRYPOINT ["/run.sh"]
