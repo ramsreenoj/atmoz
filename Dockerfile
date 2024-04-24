@@ -5,16 +5,22 @@ MAINTAINER Adrian Dvergsdal [atmoz.net]
 # - Install packages
 # - OpenSSH needs /var/run/sshd to run
 # - Remove generic host keys, entrypoint generates unique keys
-RUN apt-get update && \
-    apt-get -y install openssh-server && \
-    rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /var/run/sshd && \
-    rm -f /etc/ssh/ssh_host_*key*
 
-COPY files/sshd_config /etc/ssh/sshd_config
-COPY files/create-sftp-user /usr/local/bin/
-COPY files/entrypoint /
+ADD resources/config /etc/sftp
+ADD resources/keys /etc/ssh
 
-EXPOSE 22
+ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.external.pipelines/.ssh/keys/id_rsa.pub
+ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.ops.pipelines/.ssh/keys/id_rsa.pub
+ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.unipay.pipelines/.ssh/keys/id_rsa.pub
+ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.ce.pipelines/.ssh/keys/id_rsa.pub
+ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.tisl.pipelines/.ssh/keys/id_rsa.pub
+ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.adp.pipelines/.ssh/keys/id_rsa.pub
+ADD resources/internal_user_ssh_keys/id_rsa.pub /home/strg.booker.pipelines/.ssh/keys/id_rsa.pub
 
-ENTRYPOINT ["/entrypoint"]
+ADD run.sh /run.sh
+
+RUN /bin/sh -c chmod +x
+
+EXPOSE 22/tcp
+
+ENTRYPOINT ["/run.sh"]
